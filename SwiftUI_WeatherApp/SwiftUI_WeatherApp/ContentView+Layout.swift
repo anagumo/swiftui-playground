@@ -2,14 +2,14 @@ import SwiftUI
 
 struct BackgroundView: View {
     
-    @Binding var isNight: Bool
+    var isNight: Bool
     
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [isNight ? .gray : .blue,
                                                    isNight ? .black: .lightBlue]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all) //Ignore the limites of safe area
+        .ignoresSafeArea() //Ignore the limites of safe area
     }
 }
 
@@ -33,7 +33,7 @@ struct CurrentDayView: View {
     var body: some View {
         VStack(spacing: .point10) {
             Image(systemName: isNight ? Constants.darkAsset : Constants.lightAsset)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: .point180, height: .point180)
@@ -67,7 +67,7 @@ struct WeatherDayItem: View {
                 .font(.system(size: .point16, weight: .medium))
                 .foregroundColor(.white)
             Image(systemName: weatherDay.assetName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: .point40, height: .point40)
